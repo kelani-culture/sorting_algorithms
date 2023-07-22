@@ -1,9 +1,9 @@
 #include "sort.h"
+#define TRUE 0
+#define FALSE 1
 
-
-void help_bubble(int arr[], size_t size);
 /**
- * bubble_sort - sort an array in ascending order
+ * bubble_sort - sort a list of array
  * @array: array to be sorted
  * @size: size of array
  */
@@ -11,51 +11,28 @@ void help_bubble(int arr[], size_t size);
 
 void bubble_sort(int *array, size_t size)
 {
-    size_t i = 0;
+    size_t i, temp, j;
+    int bubbled = FALSE;
 
-    while (i < size - 1)
+    if (array == NULL || size <= 1)
+        return;
+
+    while (bubbled == FALSE)
     {
-			help_bubble(array, size);
-			i++;
+	bubbled = TRUE;
+        for (i = 0; i < size - 1;  i++)
+        {
+            for (j = i + 1; j < size - 1; j++)
+            {
+                if (array[j] < array[i])
+                {
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    bubbled = FALSE;
+                    print_array(array, size);
+                }
+            }
+        }
     }
 }
-
-/**
- * help_bubble - helps check if the array at the last index
- * 	is less than the prev array
- * @arr: array to swap
- * @size: size of the array
- */
-
-void help_bubble(int arr[], size_t size)
-{
-    size_t i = size - 1;
-
-    while (i > 0)
-    {
-	if (arr[i] < arr[i -  1])
-	{
-	    int temp = arr[i];
-	    arr[i] = arr[i - 1];
-	    arr[i - 1] = temp;
-	    print_array(arr, size);
-	}
-	i--;
-    }
-}
-
-/**
- * swap - swap the index in the array
- * @arr: array to swap
- * @x: index of the arry
- * @y: index of the array
- */
-
-/* void swap(int arr[], x, y, size) */
-/* { */
-/*     int temp = arr[x]; */
-/*     a[x] = a[y]; */
-/*     a[y] = temp; */
-
-/*     print_array(arr, size) */
-/* } */

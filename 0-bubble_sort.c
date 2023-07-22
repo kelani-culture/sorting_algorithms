@@ -11,12 +11,12 @@ void help_bubble(int arr[], size_t size);
 
 void bubble_sort(int *array, size_t size)
 {
-    int i = 0;
+    size_t i = 0;
 
     while (i < size - 1)
     {
-	help_bubble(array, size);
-	i++;
+			help_bubble(array, size);
+			i++;
     }
 }
 

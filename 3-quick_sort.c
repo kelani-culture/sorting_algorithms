@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void swap(int *array, int index_1, int index_2, int size);
+void swap(int *array, int index_1, int index_2);
 /**
  * partition - for partitioning the index
  * @array: array to sort
@@ -10,7 +10,7 @@ void swap(int *array, int index_1, int index_2, int size);
  * Return: the partition index
  */
 
-int partition(int *array, int start, int end, int size)
+int lomuto_partition(int *array, int start, int end, size_t size)
 {
 	int pivot = array[end], i;
 	int partitionIndex = start;
@@ -19,11 +19,17 @@ int partition(int *array, int start, int end, int size)
 	{
 		if (array[i] <= pivot)
 		{
-			swap(array, i, partitionIndex, size);
+			if (i != partitionIndex)
+			{
+				swap(array, i, partitionIndex);
+				print_array(array, size);
+			}
 			partitionIndex++;
 		}
 	}
-	swap(array, partitionIndex, i, size);
+	/*if (array[partitionIndex] > pivot)*/
+	swap(array, partitionIndex, i);
+	print_array(array, size);
 	return (partitionIndex);
 }
 
@@ -35,14 +41,11 @@ int partition(int *array, int start, int end, int size)
  * @size: size of the array
  */
 
-void swap(int *array, int index_1, int index_2, int size)
+void swap(int *array, int index_1, int index_2)
 {
 	int temp = array[index_1];
-
 	array[index_1] = array[index_2];
 	array[index_2] = temp;
-
-	print_array(array, size);
 }
 
 /**
@@ -53,14 +56,14 @@ void swap(int *array, int index_1, int index_2, int size)
  * @size: size of the array
  */
 
-void help_sort(int *array, int start, int end, int size)
+void help_sort(int *array, int start, int end, size_t size)
 {
 	int pIndex;
 
 	if (start >= end)
 		return;
 
-	pIndex = partition(array, start, end, size);
+	pIndex = lomuto_partition(array, start, end, size);
 	help_sort(array, start, pIndex - 1, size);
 	help_sort(array, pIndex + 1, end, size);
 }

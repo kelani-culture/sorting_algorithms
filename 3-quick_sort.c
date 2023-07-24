@@ -2,7 +2,7 @@
 
 void swap(int *array, int index_1, int index_2);
 /**
- * partition - for partitioning the index
+ * lomuto_partition - for partitioning the index
  * @array: array to sort
  * @start: start of the array
  * @end: last index of the array
@@ -19,10 +19,9 @@ int lomuto_partition(int *array, int start, int end, size_t size)
 	{
 		if (array[i] <= pivot)
 		{
-			if (i != partitionIndex)
+			if (i > partitionIndex)
 			{
 				swap(array, i, partitionIndex);
-				print_array(array, size);
 			}
 			partitionIndex++;
 		}
@@ -38,12 +37,12 @@ int lomuto_partition(int *array, int start, int end, size_t size)
  * @array: array to swap
  * @index_1: value to be swaped
  * @index_2: value to be swaped
- * @size: size of the array
  */
 
 void swap(int *array, int index_1, int index_2)
 {
 	int temp = array[index_1];
+
 	array[index_1] = array[index_2];
 	array[index_2] = temp;
 }

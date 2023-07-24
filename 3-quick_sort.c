@@ -22,20 +22,23 @@ int lomuto_partition(int *array, int start, int end, size_t size)
 			if (i > partitionIndex)
 			{
 				swap(array, i, partitionIndex);
+				print_array(array, size);
 			}
 			partitionIndex++;
 		}
 	}
-	/*if (array[partitionIndex] > pivot)*/
-	swap(array, partitionIndex, i);
-	print_array(array, size);
-	return (partitionIndex);
+	if (array[end] < array[partitionIndex])
+	{
+		swap(array, partitionIndex, end);
+		print_array(array, size);
+	}
+return (partitionIndex);
 }
 
 /**
- * swap - swap the array
- * @array: array to swap
- * @index_1: value to be swaped
+* swap - swap the array
+* @array: array to swap
+* @index_1: value to be swaped
  * @index_2: value to be swaped
  */
 

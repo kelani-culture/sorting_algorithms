@@ -15,7 +15,6 @@ void counting_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
-
 	max = array[0];
 	/* find max element in an array */
 	for (i = 0; i < size; i++)
@@ -40,11 +39,11 @@ void counting_sort(int *array, size_t size)
 		countArray[i] = 0;
 	for (i = 0;  i < size; i++)
 		++countArray[array[i]];
-	for (i = 0; i <= k; i++)
+	for (i = 0; i < k; i++)
 		countArray[i] = countArray[i] + countArray[i - 1];
 	print_array(countArray, k);
 	for (j = size - 1; j >= 0; j--)
-		dupArray[--countArray[array[i]]] = array[i];
+		dupArray[--countArray[array[j]]] = array[j];
 	for (i = 0; i < size; i++)
 		array[i] = dupArray[i];
 	free(dupArray);
